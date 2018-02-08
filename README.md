@@ -1,6 +1,7 @@
 # vue_cli
 
 > a Vue project
+> 基于 vue+swiper+mint-ui开发
 
 ## Build Setup
 
