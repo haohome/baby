@@ -108,6 +108,7 @@ image[lazy=loading] {
   font-weight: normal;
   width: 4rem;
   height: 1.5rem;
+  line-height: 1.5rem;
   margin: 0 auto;
   background: red;
   border-radius: 1rem;

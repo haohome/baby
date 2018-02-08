@@ -1,4 +1,4 @@
-# vue_cli
+# baby
 
 > a Vue project
 > 基于 vue+swiper+mint-ui开发

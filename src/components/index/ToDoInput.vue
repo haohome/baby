@@ -24,6 +24,7 @@ export default {
     return{
       userName:'',
       msg:'',
+      time:'',
     }
   },
   methods:{
@@ -37,12 +38,14 @@ export default {
         MessageBox.alert("说句话呗!","提示");
         return;
       }
-      var time=new Date().getTime();
+      this.time=new Date().getTime();
+      var params={userName:self.userName,msg:self.msg,time:self.time}
+      this.$emit('addEvent',params)
       this.$axios({
         methods:'POST',
         url:'/sendMsg.php',
         baseURL: 'http://www.haohome.top/yx/data',
-        params:{userName:self.userName,msg:self.msg,time:time},
+        params:params,
         headers : {
           "Content-Type":'application/x-www-form-urlencoded; charset=UTF-8'
         },

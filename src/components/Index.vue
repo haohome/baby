@@ -1,42 +1,41 @@
 <template>
-<div id="container">
-  <mt-header fixed title="小宝贝" class="header"></mt-header>
+<div class="container">
+  <MyHeader/>
   <Banner/>
-  <ToDoList/>
+  <ToDoList :myList="list" />
   <MainBox/>  
-  <ToDoInput/>
+  <ToDoInput @addEvent="add($event)"/>
 </div>
 </template>
-
 <script>
-import { Header } from 'mint-ui';
-import Banner from './Banner';
-import ToDoInput from './ToDoInput.vue'
-import MainBox from './MainBox.vue'
-import ToDoList from './ToDoList.vue'
-export default {
-  name: 'Index',
-  data () {
-    return {
-    }
-  },
-  components: {  
-    'Banner':Banner,
-    'MainBox':MainBox, 
-    'ToDoInput':ToDoInput,
-    'ToDoList':ToDoList 
-  },
-}
+  import Header from './common/Header';
+  import Banner from './index/Banner';
+  import ToDoInput from './index/ToDoInput.vue'
+  import MainBox from './index/MainBox.vue'
+  import ToDoList from './index/ToDoList.vue'
+  export default {
+    name: 'Index',
+    data () {
+      return {
+        list:[]
+      }
+    },
+    components: {  
+      'MyHeader':Header,
+      'Banner':Banner,
+      'MainBox':MainBox, 
+      'ToDoInput':ToDoInput,
+      'ToDoList':ToDoList 
+    },
+    methods:{
+      add(msg){
+        this.list.unshift(msg)
+      },
+    },
+  }
 </script>
-<style>
-header.header{
-  background-color:rgba(176, 184, 187, 0.5);
-  font-size:2rem;
-}
-.header h1{
-  font-weight:bold;
-}
-#container{
-  padding:0 2rem
+<style scoped>
+.container{
+  padding:0 1.5rem;
 }
 </style>

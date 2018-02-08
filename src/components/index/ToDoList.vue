@@ -1,8 +1,9 @@
 <template>
   <div id="todoList">
     <h1>最新寄语</h1>
+    <router-link to="/msg" class="moreMsg">查看更多</router-link>
     <ul>
-      <li class="msg" v-for="(item,key) in msgList" :key=key v-if="key<5">
+      <li class="msg" v-for="(item,key) in msg" :key=key v-if="key<5">
         <b>{{item.userName}}</b>：{{item.msg}}
         <span>{{new Date(parseInt(item.time)).toLocaleString()}}</span>
       </li>
@@ -11,6 +12,7 @@
 </template>
 <script>
 export default {
+  props:['myList'],
   name:"ToDoList",
   data(){
     return {
@@ -33,13 +35,23 @@ export default {
       })
     }
   },
-  mounted(){
+  beforeMount(){
     this.getMsg();
+  },
+  computed:{
+    msg(){
+      this.msgList.unshift(...this.myList);
+      console.log(this.msgList);
+      console.log(12);
+      return this.msgList;
+    }
   }
 }
 </script>
 <style>
   #todoList{
+    position: relative;
+    margin-top: 1rem; 
     height:auto
   }
   #todoList h1{
@@ -51,6 +63,14 @@ export default {
   }
   #todoList .msg span{
     font-size:1rem;
-    float:right;
+    color:rgb(83, 86, 236)
+  } 
+  #todoList .moreMsg{
+    position: absolute;
+    font-size: 1.8rem;
+    right: .5rem;
+    top: 0;
+    color:aliceblue;
+    cursor: pointer;
   }
 </style>
