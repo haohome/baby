@@ -58,7 +58,7 @@ export default {
     color:teal
   }
   #todoList .msg{
-    font-size:1.8rem;
+    font-size:1.5rem;
     margin:1rem;
   }
   #todoList .msg span{
@@ -67,9 +67,9 @@ export default {
   } 
   #todoList .moreMsg{
     position: absolute;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     right: .5rem;
-    top: 0;
+    top: .2rem;
     color:aliceblue;
     cursor: pointer;
   }
