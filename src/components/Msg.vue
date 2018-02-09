@@ -54,7 +54,7 @@
     height:auto
   }
   #msg .msg{
-    font-size:1.8rem;
+    font-size:1.6rem;
     margin:1rem;
   }
   #msg .msg span{

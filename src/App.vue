@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   html{
     font-size:10px;
   }

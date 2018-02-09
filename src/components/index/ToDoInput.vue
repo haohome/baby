@@ -6,11 +6,6 @@
       <mt-field label="寄 语" placeholder="请输入您想说的话" type="textarea" rows="3" v-model="msg" class="msg"></mt-field>
       <mt-button type="primary" @click.self.prevent="addList" class="submit">提交</mt-button>
     </form>
-    <div id="todoBox">
-      <ul>
-        <!-- <li v-for="(item,key) in msgList" :key=key>{{item.userName}}:{{item.msg}}</li> -->
-      </ul>
-    </div>
   </div>
 </template>
 <script>
