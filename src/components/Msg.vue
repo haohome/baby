@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <mt-header title="所有寄语" class="header">
-      <router-link to="/" slot="left">
-        <mt-button icon="back">返回</mt-button>
-      </router-link>
+        <mt-button icon="back" slot="left" @click.self.prevent="goBack()">返回</mt-button>
     </mt-header>
     <div id="msg">
       <ul>
@@ -38,6 +36,9 @@
             console.log(self.msgList);
           },
         })
+      },
+      goBack(){
+        this.$router.go(-1)
       }
     },
     beforeMount(){
@@ -51,11 +52,16 @@
   }
   #msg{
     padding:0 .5rem;
+    padding-left: 1rem;
     height:auto
+  }
+  #msg ul{
+    list-style-type: disc;
+    list-style-position: inside;
   }
   #msg .msg{
     font-size:1.6rem;
-    margin:1rem;
+    margin:1rem 0;
   }
   #msg .msg span{
     font-size:1rem;

@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container" :style="backgroundDiv">
   <MyHeader/>
   <Banner/>
   <ToDoList :myList="list" />
@@ -17,7 +17,10 @@
     name: 'Index',
     data () {
       return {
-        list:[]
+        list:[],
+        backgroundDiv: {
+          backgroundImage: 'url(' + require('../assets/img/bg.jpg') + ')',
+        }
       }
     },
     components: {  
@@ -37,5 +40,7 @@
 <style scoped>
 .container{
   padding:0 1.5rem;
+  background: no-repeat center;
+  background-size:cover;
 }
 </style>

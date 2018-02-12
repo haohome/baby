@@ -30,7 +30,6 @@ export default {
         responseType: 'json',
         transformResponse:function(data){
           self.msgList=data;
-          console.log(self.msgList);
         },
       })
     }
@@ -41,8 +40,6 @@ export default {
   computed:{
     msg(){
       this.msgList.unshift(...this.myList);
-      console.log(this.msgList);
-      console.log(12);
       return this.msgList;
     }
   }
@@ -53,6 +50,9 @@ export default {
     position: relative;
     margin-top: 1rem; 
     height:auto
+  }
+  #todoList ul{
+    list-style-type: disc;
   }
   #todoList h1{
     color:teal
@@ -70,7 +70,7 @@ export default {
     font-size: 1.5rem;
     right: .5rem;
     top: .2rem;
-    color:aliceblue;
+    color:#333;
     cursor: pointer;
   }
 </style>

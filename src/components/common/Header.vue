@@ -1,5 +1,5 @@
 <template>
-  <mt-header fixed title="小宝贝" class="header"></mt-header>
+  <mt-header fixed title="小轩宝贝" class="header"></mt-header>
 </template>
 <script>
 export default {

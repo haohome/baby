@@ -1,12 +1,14 @@
 <template>
   <div class="lazy">
     <h1>嗷嗷百态</h1>
+    <a href="#" @click.self.prevent="getList(1)" v-show="order" class="order">倒序查看</a>
+    <a href="#" @click.self.prevent="getList(0)" v-show="!order" class="order">正序查看</a>
     <ul>
       <li v-for="(item,key) in list" :key=key>
-        <img v-lazy="item.img">
+        <img v-lazy="item.img" @click.self.prevent="zoom(item.img,item.des)">
         <div class="title">
           <h2>{{item.des}}</h2>
-          <p>第 {{item.day}} 天</p>
+          <span>第 {{item.day}} 天</span>
         </div>
       </li>
     </ul>
@@ -24,17 +26,23 @@ export default {
       num:10,
       load:"更多精彩",
       disabled:false,
-      showSpinner:0
+      showSpinner:0,
+      order:true
     }
   },
   methods:{
-    getList(){
+    getList(index){
+      if(index==1){
+        this.order=false
+      }else{
+        this.order=true
+      }
       var self=this;
       this.$axios({
         url:'/getCarrousel.php',
         baseURL: 'http://www.haohome.top/yx/data',
         methods:'post',
-        params:{num:self.num},
+        params:{num:self.num,order:index},  //num:请求数量{num:10,请求10张图片,num:0,每组请求一个}  order:查看顺序{order:0 正序,order:1倒序}
         responseType: 'json',
         transformResponse:function(data){
           self.list=data;
@@ -47,13 +55,25 @@ export default {
       })
     },
     loadMore(){
-      this.num+=4;
-      this.getList();
+      this.num+=10;
+      this.getList(1);
       this.showSpinner=1;
+    },
+    zoom(img,des){
+      this.$layer.open({
+        type: 1, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title: '',
+        content: `<img src="${img}" style="width:100%;">`,
+        area: 'auto',
+        offset: 'auto',
+        time: 0,
+        shade: true,
+        shadeClose: true,
+      })
     }
   },
   beforeMount(){
-     this.getList();
+     this.getList(0);
   }
 }
 </script>
@@ -62,6 +82,9 @@ image[lazy=loading] {
   width: 40px;
   height: 300px;
   margin: auto;
+}
+.lazy{
+  position: relative;
 }
 .lazy h1{
   color:teal
@@ -76,45 +99,42 @@ image[lazy=loading] {
 .lazy li{
   margin-top:2rem;
   position: relative;
+  border-radius:5px;
+  border:10px solid #fff;
+  border-bottom:3px solid #fff;
+  box-shadow:2px 2px 3px #aaaaaa;
+  box-sizing: border-box;
 }
 .lazy img{
   width:12rem;
   height:auto;
-  border:10px solid #fff;
-  border-bottom:50px solid #fff;
-  /* padding:10px 10px 70px 10px; */
   border-radius:5px;
-  box-shadow:2px 2px 3px #aaaaaa;
 }
 .lazy .title{
-  width: 100%;
-  position: absolute;
-  bottom: .2rem;
+  width: 12rem;
   text-align: center;
   color:#333;
-  padding:0 .2rem;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
-  /* font-size:3rem; */
   font-weight:bold;
-  /* text-shadow: 2px 3px 5px rgb(231, 243, 62); */
+  background:#fff;
   box-sizing: border-box;
 }
 .lazy .title h2{
-  font-size:1.6rem;
-  margin-bottom:.5rem;
+  font-size: 1.5rem;
+  margin-bottom: .3rem;
 }
-.lazy .title p{
+.lazy .title span{
+  display:inline-block;
   font-size: 1.3rem;
   font-weight: normal;
-  width: 4rem;
-  height: 1.5rem;
-  line-height: 1.5rem;
+  width: auto;
+  line-height: 1.3rem;
   margin: 0 auto;
   background: red;
   border-radius: 1rem;
   color: #fff;
-  padding: 0.07rem .5rem;
-  text-shadow: 2px 0px 2px rgb(84, 84, 79);
+  padding: 0.2rem .5rem;
+  text-shadow: 2px 1px 2px rgb(84, 84, 79);
 }
 .lazy .title .talk{
   position: absolute;
@@ -128,12 +148,21 @@ image[lazy=loading] {
   background-repeat: no-repeat;
 }
 .lazy .btn{
-  margin:2rem 0
+  margin:2rem 0;
+  background-color: #eee
 }
 .lazy .btn .spinner{
   position: absolute;
   left: 62%;
   bottom: 15%;
+}
+.lazy .order{
+  position: absolute;
+  font-size: 1.5rem;
+  right: .5rem;
+  top: .2rem;
+  color:#333;
+  cursor: pointer;
 }
 </style>
 

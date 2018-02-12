@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="backgroundDiv">
+  <div id="app" >
     <router-view/>
   </div>
 </template>
@@ -9,9 +9,7 @@ export default {
   name: 'App',
   data(){
     return {
-      backgroundDiv: {
-          backgroundImage: 'url(' + require('./assets/img/bg.jpg') + ')',
-        }
+      
     }
   }
 }
@@ -23,7 +21,5 @@ export default {
   }
   #app{
     overflow: hidden;
-    background: no-repeat center;
-    background-size:cover;
   }
 </style>
