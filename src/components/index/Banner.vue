@@ -4,7 +4,7 @@
     <swiper :options="swiperOption">  
       <div class="swiper-slide img-slide" v-for="(item, index) in carrouselList" :key="index">
         <div class="title">第{{index+1}}天</div>
-        <img :src="item.img" @click.self.prevent="zoom(item.img,item.des)">
+        <img :src="item.img">
         <!-- <div class="swiper-lazy-preloader"></div> -->
       </div>
       <div class="swiper-pagination"  slot="pagination"></div>
@@ -63,18 +63,6 @@ export default {
         },
       })
     },
-    zoom(img,des){
-      this.$layer.open({
-        type: 1, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title: '',
-        content: `<img src="${img}" style="width:100%;">`,
-        area: 'auto',
-        offset: 'auto',
-        time: 0,
-        shade: true,
-        shadeClose: true,
-      })
-    }
   },
   created(){
     this.getList();

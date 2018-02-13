@@ -7,6 +7,7 @@
         <b>{{item.userName}}</b>：{{item.msg}}
         <span>{{new Date(parseInt(item.time)).toLocaleString()}}</span>
       </li>
+      <span v-show="msg.length>=5" style="color:#333">▪▪▪</span>
     </ul>
   </div>
 </template>

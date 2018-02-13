@@ -8,7 +8,12 @@
         <img v-lazy="item.img" @click.self.prevent="zoom(item.img,item.des)">
         <div class="title">
           <h2>{{item.des}}</h2>
-          <span>第 {{item.day}} 天</span>
+          <p>第 {{item.day}} 天</p>
+          <div class="thumb">
+            <i class="heart" :style="star" :class="{hover:parseInt(item.isHover)}" @click="heart(item)"></i>
+            <span class="count">{{item.count}}</span>
+            <!-- <input type="checkbox" :checked="parseInt(item.isHover)"> -->
+          </div>
         </div>
       </li>
     </ul>
@@ -27,7 +32,11 @@ export default {
       load:"更多精彩",
       disabled:false,
       showSpinner:0,
-      order:true
+      order:true,
+      star:{
+        backgroundImage:'url(' + require('../../assets/img/web_heart_animation.png') + ')'
+      },
+      isHover:false
     }
   },
   methods:{
@@ -54,6 +63,23 @@ export default {
         },
       })
     },
+    updateCount(pid,count){
+      this.$axios({
+        url:'/updateCarrousel.php',
+        baseURL: 'http://www.haohome.top/yx/data',
+        methods:'post',
+        params:{pid:pid,count:count},  
+        responseType: 'json',
+        transformResponse:function(data){
+          var code=data.code;
+          if(code){
+          console.log("点赞成功");
+          }else{
+            console.log("点赞失败");
+          }
+        },
+      })
+    },
     loadMore(){
       this.num+=10;
       this.getList(1);
@@ -70,6 +96,16 @@ export default {
         shade: true,
         shadeClose: true,
       })
+    },
+    heart(item){
+      if(item.isHover=="0"){
+        item.isHover="1",
+        item.count++;
+      }else{
+        item.isHover="0"
+        item.count--;
+      }
+      this.updateCount(item.pid,item.count)
     }
   },
   beforeMount(){
@@ -123,7 +159,7 @@ image[lazy=loading] {
   font-size: 1.5rem;
   margin-bottom: .3rem;
 }
-.lazy .title span{
+.lazy .title p{
   display:inline-block;
   font-size: 1.3rem;
   font-weight: normal;
@@ -146,6 +182,31 @@ image[lazy=loading] {
   display: block;
   background-size: 1.5rem;
   background-repeat: no-repeat;
+}
+.title .thumb{
+  position: absolute;
+  bottom: -2rem;
+  right: -.5rem;
+}
+.title .heart{
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  background-size: auto 5rem;
+  background-position: 0 0;
+}
+/* .title .heart:hover { 
+  background-position: -140rem 0; 
+  transition: background 1s steps(28); 
+} */
+.title .heart.hover { 
+  transition: background 1s steps(28); 
+  background-position: -140rem 0; 
+}
+.title .count{
+  position: absolute;
+  bottom: 2.2rem;
+  right: .5rem;
 }
 .lazy .btn{
   margin:2rem 0;
