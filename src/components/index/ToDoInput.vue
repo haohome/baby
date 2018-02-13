@@ -63,7 +63,8 @@ export default {
 </script>
 <style>
   #todoInput{
-    height:20rem
+    height:20rem;
+    padding-bottom:3rem;
   }
   #todoInput h1{
     color:teal;
