@@ -17,7 +17,7 @@
         </div>
       </li>
     </ul>
-    <mt-button type="default" size="large" class="btn" @click.native="loadMore" :disabled="disabled">
+    <mt-button type="default" size="large" class="btn" @click.native="loadMore()" :disabled="disabled">
       <mt-spinner type="snake" :size="20" v-show="showSpinner" class="spinner"></mt-spinner>
       {{load}}</mt-button>
   </div>
@@ -82,7 +82,11 @@ export default {
     },
     loadMore(){
       this.num+=10;
-      this.getList(1);
+      if(this.order){
+        this.getList(0);
+      }else{
+        this.getList(1);
+      }
       this.showSpinner=1;
     },
     zoom(img,des){
