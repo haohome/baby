@@ -32,7 +32,7 @@ export default {
       load:"更多精彩",
       disabled:false,
       showSpinner:0,
-      order:true,
+      order:false,
       star:{
         backgroundImage:'url(' + require('../../assets/img/web_heart_animation.png') + ')'
       },
