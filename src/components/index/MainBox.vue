@@ -113,7 +113,7 @@ export default {
     }
   },
   beforeMount(){
-     this.getList(0);
+     this.getList(1);
   }
 }
 </script>
