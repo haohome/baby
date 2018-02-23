@@ -3,7 +3,9 @@
     <h1>每日一晒</h1>
     <swiper :options="swiperOption">  
       <div class="swiper-slide img-slide" v-for="(item, index) in carrouselList" :key="index">
-        <div class="title">第{{item.day}}天</div>
+        <div class="title">第{{item.day}}天<br/>
+          <i style="font-size:10px;">{{item.date}}</i> 
+        </div>
         <!-- <video v-show="item.img.slice(3)=='mp4'" src="http://ojis8rp6f.bkt.clouddn.com/%E5%AE%9D%E5%A8%83%E7%9E%AA%E7%9C%BC%E7%9D%9B.mp4" height="250" preload="meta" controls="controls"></video> -->
         <img :src="item.img">
         <!-- <div class="swiper-lazy-preloader"></div> -->
