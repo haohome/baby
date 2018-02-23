@@ -13,7 +13,7 @@
   }
   
   else{
-    $sql= "SELECT * FROM w_photo GROUP BY day ORDER BY pid";   //每天取一个
+    $sql= "SELECT * FROM w_photo GROUP BY day ORDER BY pid DESC";   //每天取一个
   }
   echo json_encode(sql_execute($sql));
 ?>
