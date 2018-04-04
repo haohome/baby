@@ -5,7 +5,7 @@
     <ul>
       <li class="msg" v-for="(item,key) in msg" :key=key v-if="key<5">
         <b>{{item.userName}}</b>：{{item.msg}}
-        <span>{{new Date(parseInt(item.time)).toLocaleString()}}</span>
+        <span>{{new Date(parseInt(item.time)).toLocaleString("zh-cn")}}</span>
       </li>
       <span v-show="msg.length>=5" style="color:#333">▪▪▪</span>
     </ul>
@@ -25,7 +25,7 @@ export default {
       var self=this;
       this.$axios({
         url:'/getMsgList.php',
-        baseURL: 'http://www.haohome.top/yx/data',
+        baseURL: 'https://www.haohome.top/yx/data',
         methods:'post',
         params:{num:5},
         responseType: 'json',

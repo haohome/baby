@@ -28,7 +28,7 @@
         var self=this;
         this.$axios({
           url:'/getMsgList.php',
-          baseURL: 'http://www.haohome.top/yx/data',
+          baseURL: 'https://www.haohome.top/yx/data',
           methods:'post',
           responseType: 'json',
           transformResponse:function(data){

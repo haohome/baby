@@ -39,7 +39,7 @@ export default {
       this.$axios({
         methods:'POST',
         url:'/sendMsg.php',
-        baseURL: 'http://www.haohome.top/yx/data',
+        baseURL: 'https://www.haohome.top/yx/data',
         params:params,
         headers : {
           "Content-Type":'application/x-www-form-urlencoded; charset=UTF-8'

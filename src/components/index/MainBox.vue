@@ -49,7 +49,7 @@ export default {
       var self=this;
       this.$axios({
         url:'/getCarrousel.php',
-        baseURL: 'http://www.haohome.top/yx/data',
+        baseURL: 'https://www.haohome.top/yx/data',
         methods:'post',
         params:{num:self.num,order:index},  //num:请求数量{num:10,请求10张图片,num:0,每组请求一个}  order:查看顺序{order:0 正序,order:1倒序}
         responseType: 'json',
@@ -66,7 +66,7 @@ export default {
     updateCount(pid,count){
       this.$axios({
         url:'/updateCarrousel.php',
-        baseURL: 'http://www.haohome.top/yx/data',
+        baseURL: 'https://www.haohome.top/yx/data',
         methods:'post',
         params:{pid:pid,count:count},  
         responseType: 'json',

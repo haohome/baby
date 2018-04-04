@@ -56,7 +56,7 @@ export default {
       var self=this;
       this.$axios({
         url:'/getCarrousel.php',
-        baseURL: 'http://www.haohome.top/yx/data',
+        baseURL: 'https://www.haohome.top/yx/data',
         methods:'post',
         params:{list:0},
         responseType: 'json',
@@ -116,7 +116,7 @@ export default {
 .swiper-slide .title{
   position: absolute;
   z-index:10;
-  bottom:3rem;
+  bottom:1.5rem;
   color:#fff;
   font-size:1.5rem;
   font-weight:bold;
